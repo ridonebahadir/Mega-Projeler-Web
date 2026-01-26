@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA PROJELER - Simülasyon</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="screen">
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="logos">
+                <div class="logo-icon">UHB</div>
+                <div class="logo-icon">KGM</div>
+            </div>
+            <div class="title-area">
+                <h1>MEGA PROJELER</h1>
+                <p class="subtitle">Karayolları Genel Müdürlüğü</p>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main class="simulation-screen">
+            <div class="simulation-preview blueprint-frame">
+                <div class="preview-content">
+                    <div class="project-icon large">🎥</div>
+                    <h2 class="project-name">Proje Yükleniyor...</h2> <!-- JS Populates this -->
+                    <p class="simulation-description">
+                        İnteraktif 3D simülasyon deneyimi başlatılıyor...
+                    </p>
+                </div>
+            </div>
+
+            <div class="simulation-controls">
+                <h3>Simülasyon Seçenekleri</h3>
+
+                <div class="option-cards">
+                    <button class="option-card selected">
+                        <span class="icon">🎥</span>
+                        <span class="label">Video Simülasyon</span>
+                    </button>
+                    <button class="option-card">
+                        <span class="icon">🔄</span>
+                        <span class="label">360° Görünüm</span>
+                    </button>
+                    <button class="option-card">
+                        <span class="icon">🛣</span>
+                        <span class="label">Sürüş Simülasyonu</span>
+                    </button>
+                </div>
+
+                <button class="btn-primary btn-launch">
+                    <span class="icon">▶</span>
+                    Simülasyonu Başlat
+                </button>
+
+                <!-- Loading Indicator (Hidden by default) -->
+                <div class="loading-indicator" style="display: none;">
+                    <div class="spinner spinner-large"></div>
+                    <p>Simülasyon yükleniyor...</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="sim-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- BOTTOMBAR -->
+        <div class="bottombar">
+            <div class="nav-left">
+                <button class="btn-secondary" onclick="window.history.back()">Geri</button>
+                <button class="btn-secondary" onclick="window.location.href='screen-menu.html'">Ana Menü</button>
+            </div>
+            <div class="nav-right">
+                <!-- Empty -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

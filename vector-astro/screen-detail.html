@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA PROJELER - Proje Detayı</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="screen">
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="logos">
+                <div class="logo-icon">UHB</div>
+                <div class="logo-icon">KGM</div>
+            </div>
+            <div class="title-area">
+                <h1>MEGA PROJELER</h1>
+                <p class="subtitle">Karayolları Genel Müdürlüğü</p>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main class="detail-screen">
+            <div class="media-panel">
+                <div class="media-container blueprint-frame">
+                    <!-- Placeholder Visual -->
+                    <div
+                        style="width:100%; height:100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
+                        <div style="text-align: center; color: var(--color-cyan);">
+                            <span style="font-size: 64px;">📷</span>
+                            <p>Proje Görseli</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h2 class="section-title">TEKNİK ÖZET</h2>
+
+                <div class="metric-rows">
+                    <!-- Metrics will be populated by JS -->
+                </div>
+
+                <p class="description">
+                    <!-- Description populated by JS -->
+                    Yükleniyor...
+                </p>
+
+                <div class="cta-buttons">
+                    <button class="btn-primary" onclick="alert('Galeri modülü henüz aktif değil.')">Galeri</button>
+                    <button class="btn-secondary">Simülasyonu Başlat</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- BOTTOMBAR -->
+        <div class="bottombar">
+            <div class="nav-left">
+                <button class="btn-secondary" onclick="window.location.href='screen-menu.html'">Geri</button>
+                <button class="btn-secondary" onclick="window.location.href='screen-menu.html'">Ana Menü</button>
+            </div>
+            <div class="nav-right">
+                <!-- Maybe simulation button here too? Spec doesn't require it, 
+                     but "Simülasyonu Başlat" is in the content area as well. 
+                     I'll stick to bottom bar having navigation. -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

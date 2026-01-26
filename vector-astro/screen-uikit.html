@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA PROJELER - UI Kit</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* UI Kit specific overrides for scrolling, since it's a long page */
+        body {
+            overflow: auto;
+        }
+
+        .screen {
+            height: auto;
+            min-height: 1080px;
+        }
+
+        main {
+            overflow: visible;
+            padding-bottom: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen">
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="logos">
+                <div class="logo-icon">UI</div>
+                <div class="logo-icon">KIT</div>
+            </div>
+            <div class="title-area">
+                <h1>GELİŞMİŞ UI KİT</h1>
+                <p class="subtitle">Komponent Kütüphanesi</p>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main class="uikit-screen">
+            <!-- SECTION 1: Buttons -->
+            <section class="component-section">
+                <h3>Buton Animasyonları</h3>
+                <div class="button-showcase">
+                    <button class="btn-primary">Normal</button>
+                    <!-- Simulation of hover state via inline style for demo is hard, but class works if JS adds it or just manual hover -->
+                    <button class="btn-primary"
+                        style="transform: scale(1.02); box-shadow: 0 0 25px var(--color-cyan);">Hover Effect</button>
+                    <button class="btn-primary" disabled style="opacity:0.5; cursor:not-allowed; box-shadow:none;">Devre
+                        Dışı</button>
+                    <button class="btn-secondary">Secondary</button>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Loading -->
+            <section class="component-section">
+                <h3>Yükleme Durumları</h3>
+                <div class="loading-showcase">
+                    <div class="spinner spinner-small"></div>
+                    <div class="spinner spinner-medium"></div>
+                    <div class="spinner spinner-large"></div>
+                    <div class="progress-bar" style="width: 300px;">
+                        <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Tooltips -->
+            <section class="component-section">
+                <h3>Tooltip Tasarımları</h3>
+                <div class="tooltip-showcase">
+                    <button class="btn-secondary has-tooltip" data-position="top">
+                        Üst Tooltip
+                        <div class="tooltip">Galeriyi Aç</div>
+                    </button>
+                    <button class="btn-secondary has-tooltip" data-position="bottom">
+                        Alt Tooltip
+                        <div class="tooltip">2,023 metre</div>
+                    </button>
+                    <!-- Note: Implementation of left/right tooltips requires specific CSS positioning logic in CSS which I added -->
+                </div>
+            </section>
+
+            <!-- SECTION 4: Inputs -->
+            <section class="component-section">
+                <h3>Input Bileşenleri</h3>
+                <div class="input-showcase">
+                    <input type="text" placeholder="Arama..." class="input-normal">
+                    <input type="text" value="1915 Çanakkale" class="input-filled">
+                    <input type="text" placeholder="Hata..." class="input-error"
+                        style="border-color: var(--color-error);">
+                </div>
+            </section>
+
+            <!-- SECTION 5: Notifications/Alerts -->
+            <section class="component-section">
+                <h3>Bildirimler</h3>
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div
+                        style="padding:16px; background:rgba(0,255,136,0.1); border:1px solid var(--color-success); color:var(--color-success); border-radius:4px;">
+                        ✓ Kayıt Başarılı
+                    </div>
+                    <div
+                        style="padding:16px; background:rgba(255,68,68,0.1); border:1px solid var(--color-error); color:var(--color-error); border-radius:4px;">
+                        ⚠ Hata Oluştu
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- BOTTOMBAR -->
+        <div class="bottombar">
+            <div class="nav-left">
+                <button class="btn-secondary" onclick="window.location.href='index.html'">Çıkış</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

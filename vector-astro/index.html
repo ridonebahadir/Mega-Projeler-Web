@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA PROJELER - Karşılama</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body >
+    <a href="webgl/index.html" target="_blank" class="webgl-button">Simülasyonu Başlat</a>
+    <div class="screen">
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="logos">
+                <div class="logo-icon">UHB</div>
+                <div class="logo-icon">KGM</div>
+            </div>
+            <div class="title-area">
+                <h1>MEGA PROJELER</h1>
+                <p class="subtitle">Karayolları Genel Müdürlüğü</p>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main class="attract-screen">
+            <!-- Animated Background Particles -->
+            <div class="particles-bg"></div>
+
+            <!-- Scanning Line Effect -->
+            <div class="scan-line"></div>
+
+            <div class="hero-title">
+                <h1 class="mega-title">MEGA PROJELER</h1>
+                <p class="cta-text">Dokunarak Başlayın</p>
+            </div>
+
+            <!-- 3D Renders Carousel with Glow -->
+            <div class="renders-showcase">
+                <div class="render-item">
+                    <div class="glow-overlay"></div>
+                    <img src="assets/project_canakkale_bridge_1769107033076.png" alt="Çanakkale">
+                </div>
+                <div class="render-item">
+                    <div class="glow-overlay"></div>
+                    <img src="assets/project_yavuz_bridge_1769107047787.png" alt="Yavuz">
+                </div>
+                <div class="render-item">
+                    <div class="glow-overlay"></div>
+                    <img src="assets/project_osmangazi_bridge_1769107063229.png" alt="Osmangazi">
+                </div>
+            </div>
+
+            <div class="metric-chips">
+                <div class="chip">
+                    <span class="icon">📏</span>
+                    <span class="label">UZUNLUK</span>
+                </div>
+                <div class="chip">
+                    <span class="icon">↔</span>
+                    <span class="label">AÇIKLIK</span>
+                </div>
+                <div class="chip">
+                    <span class="icon">↕</span>
+                    <span class="label">YÜKSEKLİK</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- BOTTOMBAR (Hidden or simplified on attract screen? Spec says Attract -> Screen 2 on tap. Usually Attract screens don't have nav bars, or minimal. 
+             The prompt "STRUCTURAL COMPONENTS" implies All Screens for Topbar. 
+             Attract screen usually doesn't need "Geri". 
+             I'll maintain the topbar but maybe hide bottom bar or keep it consistent? 
+             The prompt layout for Attract screen does not explicitly list the bottom bar in its specific layout section, 
+             only "Entire screen clickable". I will OMIT bottom bar for Attract Screen to keep it clean and focused).
+        -->
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

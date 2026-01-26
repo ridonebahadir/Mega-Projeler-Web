@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA PROJELER - Ana Menü</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="screen">
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="logos">
+                <div class="logo-icon">UHB</div>
+                <div class="logo-icon">KGM</div>
+            </div>
+            <div class="title-area">
+                <h1>MEGA PROJELER</h1>
+                <p class="subtitle">Karayolları Genel Müdürlüğü</p>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main class="menu-screen">
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <article class="project-card" onclick="window.location.href='screen-detail.html?project=canakkale'">
+                    <div class="card-header">
+                        <h3>1915 Çanakkale Köprüsü</h3>
+                        <span class="tag">KÖPRÜ</span>
+                    </div>
+                    <div class="card-media blueprint-frame" style="height: 140px; margin: 16px 0;">
+                        <img src="assets/project_canakkale_bridge_1769107033076.png"
+                            style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+                    </div>
+                    <div class="card-metric">
+                        <span class="value">2,023 m</span>
+                        <span class="label">ana açıklık</span>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card" onclick="window.location.href='screen-detail.html?project=yavuz'">
+                    <div class="card-header">
+                        <h3>Yavuz Sultan Selim</h3>
+                        <span class="tag">KÖPRÜ</span>
+                    </div>
+                    <div class="card-media blueprint-frame" style="height: 140px; margin: 16px 0;">
+                        <img src="assets/project_yavuz_bridge_1769107047787.png"
+                            style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+                    </div>
+                    <div class="card-metric">
+                        <span class="value">1,408 m</span>
+                        <span class="label">ana açıklık</span>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card" onclick="window.location.href='screen-detail.html?project=osmangazi'">
+                    <div class="card-header">
+                        <h3>Osmangazi Köprüsü</h3>
+                        <span class="tag">KÖPRÜ</span>
+                    </div>
+                    <div class="card-media blueprint-frame" style="height: 140px; margin: 16px 0;">
+                        <img src="assets/project_osmangazi_bridge_1769107063229.png"
+                            style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+                    </div>
+                    <div class="card-metric">
+                        <span class="value">1,550 m</span>
+                        <span class="label">ana açıklık</span>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project-card" onclick="window.location.href='screen-detail.html?project=zigana'">
+                    <div class="card-header">
+                        <h3>Zigana Tüneli</h3>
+                        <span class="tag">TÜNEL</span>
+                    </div>
+                    <div class="card-media blueprint-frame" style="height: 140px; margin: 16px 0;">
+                        <img src="assets/zigana_tunnel_minimal_text_1769109119084.png"
+                            style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+                    </div>
+                    <div class="card-metric">
+                        <span class="value">14.5 km</span>
+                        <span class="label">uzunluk</span>
+                    </div>
+                </article>
+
+                <!-- Project 5 -->
+                <article class="project-card" onclick="window.location.href='screen-detail.html?project=ovit'">
+                    <div class="card-header">
+                        <h3>Ovit Tüneli</h3>
+                        <span class="tag">TÜNEL</span>
+                    </div>
+                    <div class="card-media blueprint-frame" style="height: 140px; margin: 16px 0;">
+                        <img src="assets/project_ovit_tunnel_1769107093438.png"
+                            style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+                    </div>
+                    <div class="card-metric">
+                        <span class="value">6.9 km</span>
+                        <span class="label">uzunluk</span>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <!-- BOTTOMBAR -->
+        <div class="bottombar">
+            <div class="nav-left">
+                <button class="btn-secondary" onclick="window.location.href='index.html'">Geri</button>
+            </div>
+            <div class="nav-right">
+                <button class="btn-primary" onclick="window.location.href='screen-simulation.html'">Simülasyonu
+                    Başlat</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
