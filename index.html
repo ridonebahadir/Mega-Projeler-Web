@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body >
-    <a href="webgl/index.html" target="_blank" class="webgl-button">Simülasyonu Başlat</a>
+<body>
+    <!-- target="_blank" KALDIRILDI - Artık aynı sekmede açılacak -->
+    <a href="webgl/index.html" class="webgl-button">Simülasyonu Başlat</a>
+
     <div class="screen">
         <!-- TOPBAR -->
         <div class="topbar">
@@ -67,14 +69,6 @@
                 </div>
             </div>
         </main>
-
-        <!-- BOTTOMBAR (Hidden or simplified on attract screen? Spec says Attract -> Screen 2 on tap. Usually Attract screens don't have nav bars, or minimal. 
-             The prompt "STRUCTURAL COMPONENTS" implies All Screens for Topbar. 
-             Attract screen usually doesn't need "Geri". 
-             I'll maintain the topbar but maybe hide bottom bar or keep it consistent? 
-             The prompt layout for Attract screen does not explicitly list the bottom bar in its specific layout section, 
-             only "Entire screen clickable". I will OMIT bottom bar for Attract Screen to keep it clean and focused).
-        -->
     </div>
 
     <script src="js/app.js"></script>
