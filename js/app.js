@@ -69,6 +69,7 @@ const PROJECT_DATA = {
 document.addEventListener('DOMContentLoaded', () => {
     initInteractions();
     initNavigation();
+    initDropdown();
 
     // Page Specific Initializations
     if (window.location.pathname.includes('screen-detail.html')) {
@@ -207,4 +208,23 @@ function initSimulation() {
             }, 30); // 3 seconds approx
         });
     }
+}
+
+function initDropdown() {
+    const dropdownButton = document.querySelector('.dropbtn');
+    if (!dropdownButton) return;
+
+    dropdownButton.addEventListener('click', function(event) {
+        // This stops the click from immediately being caught by the window's click listener
+        event.stopPropagation();
+        document.querySelector('.dropdown-content').classList.toggle('show');
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(event) {
+        const dropdownContent = document.querySelector('.dropdown-content');
+        if (dropdownContent && dropdownContent.classList.contains('show')) {
+            dropdownContent.classList.remove('show');
+        }
+    });
 }

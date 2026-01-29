@@ -1005,19 +1005,73 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.webgl-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    z-index: 10000;
-    font-family: sans-serif;
+/* Dropdown container */
+.dropdown {
+  position: fixed;
+  top: 15px; /* Adjust to align with topbar */
+  right: var(--safe-area);
+  z-index: 10001; /* Above other elements */
 }
 
-.webgl-button:hover {
-    background-color: #0056b3;
+/* Dropdown Button */
+.dropbtn {
+  background-color: var(--color-cyan);
+  color: var(--color-bg-navy);
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  
+  position: absolute;
+  right: 0; /* Align to the right of the button */
+  background-color: var(--color-bg-navy);
+  border: 1px solid var(--color-cyan-dim);
+  min-width: 220px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  z-index: 1;
+  border-radius: 4px;
+  margin-top: 8px; /* Keep the margin for visual separation */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: var(--color-text-white);
+  padding: 14px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--color-cyan-dim);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: rgba(0, 229, 255, 0.1);
+  color: var(--color-cyan);
+}
+
+/* Show the dropdown menu when the .show class is added by JavaScript */
+.dropdown-content.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
