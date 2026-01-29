@@ -69,7 +69,6 @@ const PROJECT_DATA = {
 document.addEventListener('DOMContentLoaded', () => {
     initInteractions();
     initNavigation();
-    initDropdown();
 
     // Page Specific Initializations
     if (window.location.pathname.includes('screen-detail.html')) {
@@ -146,10 +145,17 @@ function loadProjectDetail() {
         for (const [key, value] of Object.entries(data.metrics)) {
             const row = document.createElement('div');
             row.classList.add('metric-row');
-            // Select icon based on key?
-            let icon = '📏';
-            if (key.includes('Yükseklik') || key.includes('Rakım')) icon = '↕';
-            if (key.includes('Tarih') || key.includes('Yılı')) icon = '📅';
+            // Select icon based on key
+            let icon = '📏'; // Default for general metrics (length)
+
+            // Width/Span metrics
+            if (key.includes('Açıklık') || key.includes('Genişlik')) icon = '↔';
+            // Height/Altitude metrics
+            else if (key.includes('Yükseklik') || key.includes('Rakım')) icon = '↕';
+            // Date/Year metrics
+            else if (key.includes('Tarih') || key.includes('Yılı')) icon = '📅';
+            // Number metrics (like Tüp Sayısı)
+            else if (key.includes('Sayısı')) icon = '#️⃣';
 
             row.innerHTML = `
                 <span class="icon">${icon}</span>
@@ -176,55 +182,89 @@ function initSimulation() {
     const projectId = urlParams.get('project') || 'canakkale';
     const data = PROJECT_DATA[projectId];
 
-    if (data) {
-        const nameEl = document.querySelector('.project-name');
-        if (nameEl) nameEl.innerText = data.title;
-    }
+    // Map project IDs to their WebGL content folders
+    const WEBGL_MAP = {
+        canakkale: 'webgl/1915/',
+        yavuz: 'webgl/yavuz/',
+        osmangazi: 'webgl/osmangazi/',
+        zigana: 'webgl/zigana/',
+        ovit: 'webgl/ovit/'
+    };
 
-    const launchBtn = document.querySelector('.btn-launch');
-    const loadingEl = document.querySelector('.loading-indicator');
-    const progressBar = document.getElementById('sim-progress');
+    const video = document.getElementById('simulation-video');
+    const progressBar = document.getElementById('construction-progress');
+    const progressText = document.getElementById('progress-text');
+    const progressContainer = document.getElementById('progress-container');
+    const constructionTitle = document.getElementById('construction-title');
+    const startButton = document.getElementById('start-simulation-btn');
+    const simulationPreview = document.querySelector('.simulation-preview'); // The main container
 
-    if (launchBtn) {
-        launchBtn.addEventListener('click', () => {
-            // Show loading
-            if (loadingEl) loadingEl.style.display = 'flex'; // grid/flex whatever
+    if (video && simulationPreview) {
+        // Set video source based on project ID
+        // Note: Assumes video files in 'assets' are named like 'canakkale.mp4'
+        const videoSource = document.createElement('source');
+        videoSource.src = `assets/${projectId}.mp4`;
+        videoSource.type = 'video/mp4';
+        video.appendChild(videoSource);
 
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 1; // slower
-                if (progressBar) progressBar.style.width = progress + '%';
-
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    // "Launch" simulation - for this demo, maybe just alert or redirect to a 'done' state
-                    // or just reset
-                    setTimeout(() => {
-                        alert("Simülasyon Başlatıldı (Demo)");
-                        if (loadingEl) loadingEl.style.display = 'none';
-                        if (progressBar) progressBar.style.width = '0%';
-                    }, 500);
-                }
-            }, 30); // 3 seconds approx
+        // Auto-play the video when ready
+        video.addEventListener('loadedmetadata', () => {
+            video.play();
         });
-    }
-}
 
-function initDropdown() {
-    const dropdownButton = document.querySelector('.dropbtn');
-    if (!dropdownButton) return;
+        // Update progress bar as video plays
+        video.addEventListener('timeupdate', () => {
+            if (video.duration) {
+                let progress = (video.currentTime / video.duration) * 100;
+                progress = Math.min(progress, 100);
 
-    dropdownButton.addEventListener('click', function(event) {
-        // This stops the click from immediately being caught by the window's click listener
-        event.stopPropagation();
-        document.querySelector('.dropdown-content').classList.toggle('show');
-    });
+                if (progressBar) {
+                    progressBar.style.width = progress + '%';
+                }
+                if (progressText) {
+                    progressText.textContent = Math.floor(progress) + '%';
+                }
+            }
+        });
 
-    // Close the dropdown if the user clicks outside of it
-    window.addEventListener('click', function(event) {
-        const dropdownContent = document.querySelector('.dropdown-content');
-        if (dropdownContent && dropdownContent.classList.contains('show')) {
-            dropdownContent.classList.remove('show');
+        // When video ends, hide video/progress elements and show the start button
+        video.addEventListener('ended', () => {
+            // Hide video and its controls
+            if (video) video.style.display = 'none';
+            if(simulationPreview.querySelector('.preview-content')) {
+                 simulationPreview.querySelector('.preview-content').style.display = 'none';
+            }
+            if (progressContainer) progressContainer.style.display = 'none';
+            if (progressText) progressText.style.display = 'none';
+            if (constructionTitle) constructionTitle.style.display = 'none';
+
+            // Show start button
+            if (startButton) {
+                startButton.style.display = 'flex';
+            }
+        });
+
+        // *** CORRECTED LOGIC FOR THE START BUTTON ***
+        if (startButton) {
+            startButton.addEventListener('click', () => {
+                const webglSrc = WEBGL_MAP[projectId];
+                if (!webglSrc) {
+                    console.error('WebGL path not found for project:', projectId);
+                    simulationPreview.innerHTML = '<p style="color:red;">Simülasyon yüklenemedi.</p>';
+                    return;
+                }
+                
+                // Create and configure the iframe for the WebGL content
+                const iframe = document.createElement('iframe');
+                iframe.src = webglSrc;
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+
+                // Replace the entire content of the preview area with the iframe
+                simulationPreview.innerHTML = '';
+                simulationPreview.appendChild(iframe);
+            });
         }
-    });
+    }
 }

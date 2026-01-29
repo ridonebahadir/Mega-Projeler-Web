@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>MEGA PROJELER - Simülasyon</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -26,45 +26,26 @@
         <main class="simulation-screen">
             <div class="simulation-preview blueprint-frame">
                 <div class="preview-content">
-                    <div class="project-icon large">🎥</div>
-                    <h2 class="project-name">Proje Yükleniyor...</h2> <!-- JS Populates this -->
-                    <p class="simulation-description">
-                        İnteraktif 3D simülasyon deneyimi başlatılıyor...
-                    </p>
+                    <video id="simulation-video" style="width: 100%; height: 100%; object-fit: cover;">
+                        <!-- Video source will be set dynamically by JavaScript -->
+                    </video>
                 </div>
             </div>
 
             <div class="simulation-controls">
-                <h3>Simülasyon Seçenekleri</h3>
+                <h3 id="construction-title">İnşaa Ediliyor</h3>
 
-                <div class="option-cards">
-                    <button class="option-card selected">
-                        <span class="icon">🎥</span>
-                        <span class="label">Video Simülasyon</span>
-                    </button>
-                    <button class="option-card">
-                        <span class="icon">🔄</span>
-                        <span class="label">360° Görünüm</span>
-                    </button>
-                    <button class="option-card">
-                        <span class="icon">🛣</span>
-                        <span class="label">Sürüş Simülasyonu</span>
-                    </button>
+                <div class="progress-bar" id="progress-container">
+                    <div class="progress-fill" id="construction-progress"></div>
                 </div>
+                <p id="progress-text"
+                    style="text-align: center; margin-top: 10px; font-size: 20px; color: var(--color-cyan); font-weight: bold;">
+                    0%</p>
 
-                <button class="btn-primary btn-launch">
+                <button class="btn-primary" id="start-simulation-btn" style="display: none; margin-top: 20px;">
                     <span class="icon">▶</span>
                     Simülasyonu Başlat
                 </button>
-
-                <!-- Loading Indicator (Hidden by default) -->
-                <div class="loading-indicator" style="display: none;">
-                    <div class="spinner spinner-large"></div>
-                    <p>Simülasyon yükleniyor...</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="sim-progress"></div>
-                    </div>
-                </div>
             </div>
         </main>
 

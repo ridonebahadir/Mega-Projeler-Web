@@ -28,16 +28,26 @@
   /* Prevent selection on kiosk */
 }
 
-body {
+html {
   margin: 0;
   padding: 0;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 2vh 2vw;
+  width: 100vw;
+  height: 100vh;
   background-color: var(--color-bg-navy);
   color: var(--color-text-white);
   font-family: var(--font-primary);
   overflow: hidden;
-  /* Prevent scrolling on Kiosk */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* Blueprint Grid Background - Refined */
   background-image:
     linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
@@ -55,60 +65,67 @@ p {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: clamp(24px, 3vw, 48px);
   font-weight: 700;
   letter-spacing: 2px;
 }
 
 h2 {
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   font-weight: 600;
   color: var(--color-cyan);
 }
 
 h3 {
-  font-size: 24px;
+  font-size: clamp(16px, 1.5vw, 24px);
   font-weight: 600;
 }
 
 p {
-  font-size: 18px;
+  font-size: clamp(14px, 1.2vw, 18px);
   line-height: 1.5;
   color: var(--color-text-white);
 }
 
 /* Layout Structure */
 .screen {
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
+  max-width: calc(100vw - 4vw);
+  max-height: calc(100vh - 4vh);
   position: relative;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--color-cyan-dim);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(15, 25, 45, 0.2);
 }
 
 main {
   flex: 1;
-  padding: 32px var(--safe-area);
-  /* Additional internal padding */
+  padding: clamp(16px, 2vh, 32px) clamp(24px, 3vw, 64px);
   position: relative;
+  overflow: auto;
 }
 
 /* TopBar */
 .topbar {
-  height: var(--topbar-height);
-  padding: 0 var(--safe-area);
+  height: clamp(60px, 8vh, 96px);
+  padding: 0 clamp(24px, 3vw, 64px);
   display: flex;
   align-items: center;
   border-bottom: 2px solid var(--color-cyan-dim);
   background: rgba(15, 25, 45, 0.9);
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
 }
 
 .logos {
   display: flex;
-  gap: 24px;
-  margin-right: 48px;
+  gap: clamp(12px, 1.5vw, 24px);
+  margin-right: clamp(24px, 3vw, 48px);
 }
 
 /* Placeholder for circular emblems */
@@ -124,6 +141,19 @@ main {
   font-size: 20px;
   background: rgba(0, 229, 255, 0.1);
   box-shadow: 0 0 10px var(--color-cyan-glow);
+}
+
+.logo-image {
+  height: clamp(40px, 5vh, 72px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
+  transition: all 0.3s ease;
+}
+
+.logo-image:hover {
+  filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.8));
+  transform: scale(1.05);
 }
 
 .title-area h1 {
@@ -161,17 +191,17 @@ main {
   background: var(--color-cyan);
   color: var(--color-bg-navy);
   border: none;
-  padding: 0 48px;
-  height: 72px;
-  font-size: 24px;
-  font-weight: 700;
+  padding: 0 clamp(24px, 3vw, 48px);
+  height: clamp(48px, 6vh, 80px);
+  font-size: clamp(16px, 1.6vw, 24px);
+  font-weight: bold;
   border-radius: 4px;
   /* Slight rounding, keeping it technical */
   box-shadow: 0 0 15px var(--color-cyan-glow);
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(8px, 1vw, 12px);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -192,9 +222,9 @@ main {
   background: transparent;
   color: var(--color-cyan);
   border: 2px solid var(--color-cyan);
-  padding: 0 40px;
-  height: 72px;
-  font-size: 22px;
+  padding: 0 clamp(20px, 2.5vw, 40px);
+  height: clamp(44px, 5vh, 72px);
+  font-size: clamp(14px, 1.5vw, 22px);
   font-weight: 600;
   border-radius: 4px;
   box-shadow: 0 0 8px var(--color-cyan-glow);
@@ -265,6 +295,24 @@ main {
   background-image: repeating-linear-gradient(90deg, var(--color-cyan), var(--color-cyan) 1px, transparent 1px, transparent 10px);
 }
 
+/* BottomBar */
+.bottombar {
+  height: clamp(50px, 7vh, 80px);
+  padding: 0 clamp(24px, 3vw, 64px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid var(--color-cyan-dim);
+  background: rgba(15, 25, 45, 0.9);
+  flex-shrink: 0;
+}
+
+.bottombar .nav-left,
+.bottombar .nav-right {
+  display: flex;
+  gap: clamp(12px, 1.5vw, 24px);
+}
+
 /* Attract Screen Specifics */
 .attract-screen {
   display: flex;
@@ -273,6 +321,59 @@ main {
   align-items: center;
   text-align: center;
   height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: rgba(15, 25, 45, 0.2);
+}
+
+/* Background Video - Fixed behind everything */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* 10% Black Overlay for readability */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.attract-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(15, 25, 45, 0.2), rgba(15, 25, 45, 0.4));
+  pointer-events: none;
+  z-index: 1;
+}
+
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.attract-screen>* {
+  position: relative;
+  z-index: 2;
 }
 
 .mega-title {
@@ -470,39 +571,101 @@ main {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(3, 340px);
+  grid-template-rows: repeat(2, 340px);
+  gap: clamp(16px, 2vw, 24px);
   width: 100%;
-  max-width: 1600px;
-  /* Constrain width */
+  height: 100%;
+  justify-content: center;
+  align-content: center;
+}
+
+/* 5th card spans to be centered */
+.project-card:nth-child(4),
+.project-card:nth-child(5) {
+  justify-self: center;
 }
 
 /* If 5 items, we can handle layout. For now, regular grid. */
 .project-card {
-  height: 320px;
+  width: 340px;
+  height: 340px;
   background: rgba(0, 229, 255, 0.05);
   /* Very subtle fill */
-  padding: 24px;
+  padding: clamp(12px, 1.5vw, 24px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   /* For inner glow effects */
   position: relative;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+/* Animated corner brackets */
+.project-card::before,
+.project-card::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 2px solid var(--color-cyan);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+}
+
+.project-card::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.project-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Scanning line effect */
+.project-card>* {
+  position: relative;
+  z-index: 2;
 }
 
 .project-card:hover {
-  background: rgba(0, 229, 255, 0.1);
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.2) inset, 0 0 20px rgba(0, 229, 255, 0.2);
-  transform: translateY(-5px);
+  background: rgba(0, 229, 255, 0.08);
+  border-color: var(--color-cyan);
+  box-shadow:
+    0 0 40px rgba(0, 229, 255, 0.15) inset,
+    0 10px 40px rgba(0, 229, 255, 0.25),
+    0 0 0 1px rgba(0, 229, 255, 0.4);
+  transform: translateY(-8px) scale(1.02);
+}
+
+.project-card:hover::before,
+.project-card:hover::after {
+  width: 32px;
+  height: 32px;
+  opacity: 1;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-header h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  flex: 1;
 }
 
 h1 {
@@ -535,6 +698,7 @@ h2 {
   border: 1px dashed var(--color-cyan-dim);
   /* Dashed border per mockup */
   background: rgba(0, 10, 20, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-media.blueprint-frame {
@@ -544,59 +708,95 @@ h2 {
   /* Enable 3D transforms */
 }
 
-.project-card:hover .card-media img {
-  animation: hologram-move 2s steps(6) infinite alternate;
+.card-media img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes hologram-move {
-  0% {
-    transform: scale(1) rotateY(-5deg) rotateX(0deg);
-  }
+.project-card:hover .card-media {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.2) inset;
+}
 
-  100% {
-    transform: scale(1.15) rotateY(5deg) rotateX(2deg);
-  }
+.project-card:hover .card-media img {
+  transform: scale(1.1);
+}
+
+.tag {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .tag {
+  border-color: var(--color-cyan);
+  background: rgba(0, 229, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
 }
 
 .card-metric {
-  border-top: 1px dotted var(--color-cyan-dim);
-  padding-top: 12px;
+  border-top: none;
+  padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.card-metric .icon {
+  font-size: 16px;
+  color: var(--color-cyan);
+  text-shadow: 0 0 8px var(--color-cyan-glow);
+}
+
+.project-card:hover .card-metric {
+  border-top-color: var(--color-cyan);
 }
 
 .card-metric .value {
-  font-size: 32px;
+  font-size: 20px;
   color: var(--color-cyan);
   font-weight: bold;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .card-metric .value {
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
 }
 
 .card-metric .label {
-  font-size: 14px;
+  font-size: 10px;
   color: var(--color-text-gray);
   text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .card-metric .label {
+  color: var(--color-cyan);
 }
 
 /* Detail Screen Split */
 .detail-screen {
   display: flex;
-  gap: 48px;
+  gap: clamp(24px, 3vw, 48px);
   height: 100%;
-  /* Fill available space */
+  align-items: stretch;
 }
 
 .media-panel {
-  flex: 3;
-  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .media-container {
   width: 100%;
-  height: 100%;
-  background: #000;
+  aspect-ratio: 1 / 1;
+  max-height: 100%;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .detail-image {
@@ -606,41 +806,42 @@ h2 {
 }
 
 .info-panel {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding-right: 24px;
+  gap: clamp(12px, 2vh, 24px);
+  padding-right: clamp(12px, 2vw, 24px);
+  justify-content: center;
 }
 
 .section-title {
-  font-size: 32px;
+  font-size: clamp(20px, 2.5vw, 32px);
   border-bottom: 2px solid var(--color-cyan);
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  display: inline-block;
-  width: 100%;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .metric-rows {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin: 32px 0;
+  display: flex;
+  flex-direction: row;
+  gap: clamp(12px, 2vw, 24px);
+  flex-wrap: wrap;
 }
 
 .metric-row {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 4px;
   background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, rgba(0, 229, 255, 0.02) 100%);
-  padding: 32px 24px;
-  border-left: 4px solid var(--color-cyan);
+  padding: clamp(12px, 1.5vh, 20px) clamp(12px, 1.5vw, 20px);
+  border-left: 3px solid var(--color-cyan);
   border-radius: 4px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  flex: 1;
+  min-width: 100px;
 }
 
 .metric-row::before {
@@ -648,16 +849,15 @@ h2 {
   position: absolute;
   top: 0;
   right: 0;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1), transparent 70%);
   pointer-events: none;
 }
 
 .metric-row:hover {
   background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(0, 229, 255, 0.03) 100%);
-  transform: translateX(5px);
-  border-left-width: 6px;
+  border-left-width: 4px;
 }
 
 .metric-row:last-child {
@@ -665,11 +865,11 @@ h2 {
 }
 
 .metric-row .icon {
-  font-size: 48px;
+  font-size: clamp(24px, 3vh, 36px);
   width: auto;
   text-align: left;
   color: var(--color-cyan);
-  text-shadow: 0 0 15px var(--color-cyan-glow);
+  text-shadow: 0 0 10px var(--color-cyan-glow);
   filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5));
 }
 
@@ -681,32 +881,32 @@ h2 {
 }
 
 .metric-content .label {
-  font-size: 14px;
+  font-size: clamp(10px, 1.2vh, 14px);
   color: var(--color-text-gray);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: 600;
 }
 
 .metric-content .value {
-  font-size: 56px;
+  font-size: clamp(28px, 4vh, 48px);
   font-weight: 900;
   color: var(--color-cyan);
-  text-shadow: 0 0 20px var(--color-cyan-glow), 0 0 40px rgba(0, 229, 255, 0.3);
+  text-shadow: 0 0 15px var(--color-cyan-glow);
   line-height: 1;
   letter-spacing: -1px;
 }
 
 .description {
-  font-size: 18px;
+  font-size: clamp(12px, 1.5vh, 16px);
   color: #CCC;
-  line-height: 1.6;
+  line-height: 1.5;
+  flex: 1;
 }
 
 .cta-buttons {
-  margin-top: auto;
   display: flex;
-  gap: 24px;
+  gap: clamp(12px, 1.5vw, 24px);
 }
 
 /* Simulation Screen */
@@ -721,7 +921,7 @@ h2 {
 
 .simulation-preview {
   width: 80%;
-  height: 50%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1005,73 +1205,30 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* Dropdown container */
-.dropdown {
-  position: fixed;
-  top: 15px; /* Adjust to align with topbar */
-  right: var(--safe-area);
-  z-index: 10001; /* Above other elements */
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  /* ekran yüksekliği */
 }
 
-/* Dropdown Button */
-.dropbtn {
-  background-color: var(--color-cyan);
-  color: var(--color-bg-navy);
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: background-color 0.3s ease;
+.detail-screen {
+  flex: 1;
+  /* üstteki içerik alanı */
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  padding: 32px var(--safe-area);
+  padding-bottom: 80px;
+  /* bottom bar için boşluk */
+  box-sizing: border-box;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown-content {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(-5px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  
-  position: absolute;
-  right: 0; /* Align to the right of the button */
-  background-color: var(--color-bg-navy);
-  border: 1px solid var(--color-cyan-dim);
-  min-width: 220px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-  z-index: 1;
-  border-radius: 4px;
-  margin-top: 8px; /* Keep the margin for visual separation */
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: var(--color-text-white);
-  padding: 14px 20px;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
-  transition: background-color 0.2s ease;
-  border-bottom: 1px solid var(--color-cyan-dim);
-}
-
-.dropdown-content a:last-child {
-    border-bottom: none;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: rgba(0, 229, 255, 0.1);
-  color: var(--color-cyan);
-}
-
-/* Show the dropdown menu when the .show class is added by JavaScript */
-.dropdown-content.show {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0);
+.bottombar {
+  margin-top: auto;
+  /* hep en alta */
+  padding-bottom: 16px;
+  /* ekstra boşluk */
 }

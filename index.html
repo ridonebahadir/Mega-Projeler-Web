@@ -3,29 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>MEGA PROJELER - Karşılama</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
-    <div class="dropdown">
-      <button class="dropbtn">Simülasyonlar</button>
-      <div class="dropdown-content">
-        <a href="webgl/1915/index.html">1915 Çanakkale</a>
-        <a href="webgl/yavuz sultan/index.html">Yavuz Sultan Selim</a>
-        <a href="webgl/osmangazi/index.html">Osmangazi</a>
-        <a href="webgl/zigana/index.html">Zigana Tüneli</a>
-        <a href="webgl/ovit/index.html">Ovit Tüneli</a>
-      </div>
-    </div>
+<body onclick="window.location.href='screen-menu.html'">
+    <!-- Background Video (Fixed, behind everything) -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="assets/back_video.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
 
     <div class="screen">
         <!-- TOPBAR -->
         <div class="topbar">
             <div class="logos">
-                <div class="logo-icon">UHB</div>
-                <div class="logo-icon">KGM</div>
+                <img src="assets/uab_logo.png" alt="Ulaştırma ve Altyapı Bakanlığı" class="logo-image">
+                <img src="assets/kgm_logo.png" alt="Karayolları Genel Müdürlüğü" class="logo-image">
             </div>
             <div class="title-area">
                 <h1>MEGA PROJELER</h1>
@@ -35,6 +30,9 @@
 
         <!-- MAIN CONTENT -->
         <main class="attract-screen">
+            <!-- 3D Particle Canvas -->
+            <canvas id="particle-canvas"></canvas>
+
             <!-- Animated Background Particles -->
             <div class="particles-bg"></div>
 
@@ -44,22 +42,6 @@
             <div class="hero-title">
                 <h1 class="mega-title">MEGA PROJELER</h1>
                 <p class="cta-text">Dokunarak Başlayın</p>
-            </div>
-
-            <!-- 3D Renders Carousel with Glow -->
-            <div class="renders-showcase">
-                <div class="render-item">
-                    <div class="glow-overlay"></div>
-                    <img src="assets/project_canakkale_bridge_1769107033076.png" alt="Çanakkale">
-                </div>
-                <div class="render-item">
-                    <div class="glow-overlay"></div>
-                    <img src="assets/project_yavuz_bridge_1769107047787.png" alt="Yavuz">
-                </div>
-                <div class="render-item">
-                    <div class="glow-overlay"></div>
-                    <img src="assets/project_osmangazi_bridge_1769107063229.png" alt="Osmangazi">
-                </div>
             </div>
 
             <div class="metric-chips">
@@ -77,8 +59,17 @@
                 </div>
             </div>
         </main>
+
+        <!-- BOTTOMBAR (Hidden or simplified on attract screen? Spec says Attract -> Screen 2 on tap. Usually Attract screens don't have nav bars, or minimal. 
+             The prompt "STRUCTURAL COMPONENTS" implies All Screens for Topbar. 
+             Attract screen usually doesn't need "Geri". 
+             I'll maintain the topbar but maybe hide bottom bar or keep it consistent? 
+             The prompt layout for Attract screen does not explicitly list the bottom bar in its specific layout section, 
+             only "Entire screen clickable". I will OMIT bottom bar for Attract Screen to keep it clean and focused).
+        -->
     </div>
 
+    <script src="js/particles.js"></script>
     <script src="js/app.js"></script>
 </body>
 
